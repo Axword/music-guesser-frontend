@@ -1,26 +1,23 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <v-container fluid class="container-main container-width_full flex_container-column">
+    <v-container class="container-width_half container-secondary">
+      <img id="logo_name-login_page" alt="Vue logo" src="./assets/logo-name.png">
+      <SpotifyLogin msg="Spotify Login"/>
+    </v-container>
+  </v-container>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SpotifyLogin from './components/SpotifyLogin.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    SpotifyLogin
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import 'styles.css';
 </style>
