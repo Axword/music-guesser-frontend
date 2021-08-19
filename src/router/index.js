@@ -6,12 +6,12 @@ import GamePlaylist from "../views/GamePlaylist.vue";
 
 const routes = [
   {
-    path: "/",
+    path: "/login",
     name: "Login",
     component: Login,
   },
   {
-    path: "/main",
+    path: "/select",
     name: "SelectMode",
     component: SelectMode,
   },

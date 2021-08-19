@@ -1,3 +1,13 @@
 <template>
-  <h1>About Page</h1>
+    <top-nav>
+      <div class="main-container">
+      </div>
+    </top-nav>
+    
 </template>
+
+<script>
+  export default {
+    
+  }
+</script>

@@ -1,6 +1,16 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import { createApp } from 'vue';
+import App from './App.vue';
 
-createApp(App).use(store).use(router).mount("#app");
+import TopNav from './components/TopNav.vue'
+
+import Router from './router';
+//import store from './store';
+
+const app = createApp(App);
+
+app.component('top-nav', TopNav);
+
+//app.use(store);
+app.use(Router);
+
+app.mount("#app");
