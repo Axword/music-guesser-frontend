@@ -22,7 +22,6 @@
   button {
     height: auto;
     width: 30%;
-    cursor: pointer;
 
     background-color: #191414;
     border-radius: 100px;
@@ -31,7 +30,6 @@
   #logo_name {
     width: 70%;
     height: auto;
-    
   }
 
   #logo_spotify {

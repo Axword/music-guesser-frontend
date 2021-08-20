@@ -82,6 +82,9 @@ export default {
 </script>
 
 <style>
+  @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
   * {
     box-sizing: border-box;
   }
@@ -92,20 +95,26 @@ export default {
   }
 
   body {
+    height: 100%;
+    width: auto;
+    margin: 0;
+    padding: 0;
+
     background: linear-gradient(to bottom right, #1ae3d9, #5c7ce9);
     background-repeat: no-repeat;
     background-size: cover;
+
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  button {
+    cursor: pointer;
   }
 
   div {
     height: 100%;
     width: 100%;
     margin: 0 auto;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
 
   div.main-container {
@@ -113,14 +122,19 @@ export default {
     width: 50%;
 
     background-color: white;
-    box-shadow: 0px 0px 10px hsl(0, 11%, 9%);
+    box-shadow: 0px 0px 10px #5c7ce9;
     border-radius: 5px;
-    border: 1px solid gray;
+    border: 1px solid #5c7ce9;
 
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   img {
