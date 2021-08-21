@@ -4,79 +4,38 @@
     <li v-for="user in this.users" :key="user.id">{{ user.nick }}</li>
   </ul>
   -->
+  <top-nav v-if="$route.path != '/login'"></top-nav> 
   <router-view/>
 </template>
 
 <script>
-export default {
+import User from './classes/user';
+import Fetcher from './classes/fetcher';
+
+export default { 
   data() {
     return {
       usersDbUrl: 'https://song-guesser-caa2c-default-rtdb.europe-west1.firebasedatabase.app/users.json',
-      userFilip: {
-        id: '1',
-        nick: 'FlipFlop',
-        email: 'filip.tomczyk00@gmail.com',
-        score: 0,
-      },
-      userMichal: {
-        id: '2',
-        nick: 'Axword',
-        email: 'cebule.axworda@gmail.com',
-        score: 0,
-      },
+      userFilip: new User('1', 'FlipFlop', 'filip.tomczyk00@gmail.com', 0),
       users: []
     };
   },
 
   methods: {
-    fetchNewUser() {
-      fetch(this.usersDbUrl, {              //send data to Firebase
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          id: this.userMichal.id,
-          nick: this.userMichal.nick,
-          email: this.userMichal.email,
-          score: this.userMichal.score,
-        }),
-      })
-      .catch(err => {
-        alert("Uh-Oh, could not send data :(\n" + err)
-        console.log(err);
-      });  
-    },
-
-    fetchUserData() {
-      fetch(this.usersDbUrl)    
-        .then(response => {
-          if(response.ok)
-            return response.json();
-        })
-        .then(data => {
-          const users = [];
-          for(const firebaseId in data) {
-            users.push({
-              id: data[firebaseId].id,
-              nick: data[firebaseId].nick,
-              email: data[firebaseId].email,
-              score: data[firebaseId].score,
-            });
-          }
-          this.users = users;
-          this.$router.push({path: '/login'});
-        })
-        .catch(err => {
-          alert("Uh-Oh, could not fetch data :(\n" + err);
-          console.log(err);
-        });
+    populateUsers() {
+      setTimeout( () => {
+        if(!Fetcher.getResponseStatus())
+          this.populateUsers();
+        else
+          this.users = Fetcher.getActiveData();
+      }, 200);
     }
   },
-  
+
   mounted() {
-    //this.fetchNewUser();  TODO: Use this method to pass new user 
-    this.fetchUserData();
+    Fetcher.getData(this.usersDbUrl);
+    this.populateUsers();
+    this.$router.push({path: '/login'});
   },
 }
 </script>

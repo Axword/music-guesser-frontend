@@ -2,7 +2,7 @@
     <table>
         <tr class="caption">
             <td colspan="2" class="caption">
-                <h1>Who was the lead singer of rock band "Queen"?</h1>
+                <h1>Who was the lead singer of rock band "Queen"?</h1> <!--TODO: Spotify as prop-->
             </td>
         </tr>
         <tr>

@@ -49,7 +49,7 @@
     }
 
     div.timer-value {
-        background-color: blue;
+        background-color: lightgreen;
         transition-duration: 1s;
         transition-timing-function: linear;
     }

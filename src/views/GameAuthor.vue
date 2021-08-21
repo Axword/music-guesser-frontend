@@ -1,5 +1,4 @@
 <template>
-    <top-nav></top-nav>
     <choice-timer></choice-timer>
     <div class="main-container">     
         <choice-table></choice-table>

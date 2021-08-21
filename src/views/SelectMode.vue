@@ -1,7 +1,4 @@
 <template>
-
-    <top-nav></top-nav>
-
     <div class="main-container">
       <button @click="goAuthor">
         <h1>AUTHOR</h1>
@@ -9,8 +6,7 @@
       <button @click="goPlaylist">
         <h1>PLAYLIST</h1>
       </button>
-    </div>
-    
+    </div>  
 </template>
 
 <script>

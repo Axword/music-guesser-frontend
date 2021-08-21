@@ -12,6 +12,7 @@
     inject: ['users'],
     methods: {
       authSpotifyUser() {
+        //TODO: SPOTIFY API
         this.$router.push('/select');
       }
     }

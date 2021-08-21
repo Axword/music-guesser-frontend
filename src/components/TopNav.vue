@@ -10,6 +10,7 @@
     export default {
         methods: {
             logout() {
+                //TODO: Confirmation alerts
                 this.$router.push('/login');
             }
         }
