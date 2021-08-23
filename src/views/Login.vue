@@ -1,15 +1,23 @@
 <template>
-    <div class="main-container">
-      <img id="logo_name" alt="Vue logo" src="../assets/logo-name.png">
-      <button @click="authSpotifyUser" id="button_spotify">
-        <img id="logo_spotify" alt="Spotify Login" src="../assets/logo-spotify-name.png"/>
-      </button>
-    </div>
+  <v-container class="justify-center">
+    <v-card elevation="2" color="primary" outlined>
+      <v-card-title class="justify-center">
+        <v-img src="../assets/logo-name.png" size="small"></v-img>
+      </v-card-title>
+      
+      <v-card-actions class="justify-center">
+        <v-btn @click="authSpotifyUser" color="black" size="x-large" width="30%">
+          Login &nbsp;
+          <v-icon>mdi-spotify</v-icon>
+        </v-btn>
+      </v-card-actions>
+
+    </v-card>
+  </v-container>
 </template>
 
 <script>
   export default {
-    inject: ['users'],
     methods: {
       authSpotifyUser() {
         //TODO: SPOTIFY API
@@ -20,28 +28,5 @@
 </script>
 
 <style scoped>
-  button {
-    height: auto;
-    width: 30%;
-
-    background-color: #191414;
-    border-radius: 100px;
-  }
-
-  #logo_name {
-    width: 70%;
-    height: auto;
-  }
-
-  #logo_spotify {
-    width: 60%;
-    height: auto;
-    margin: 3%;
-  }
-
-  #button_spotify:hover {
-    box-shadow: 0px 0px 5px #1db954;
-    transition: 0.2s;
-  }
 
 </style>

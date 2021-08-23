@@ -1,27 +1,27 @@
 <template>
-    <table>
-        <tr class="caption">
-            <td colspan="2" class="caption">
-                <h1>Who was the lead singer of rock band "Queen"?</h1> <!--TODO: Spotify as prop-->
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button @click="checkAns('ansA')">A. Curt Cobain</button>
-            </td>
-            <td>
-                <button @click="checkAns('ansB')">B. Eric Cartman</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <button @click="checkAns('ansC')">C. Freddie Mercury</button>
-            </td>
-            <td>
-                <button @click="checkAns('ansD')">D. Philip Tentacles</button>
-            </td>
-        </tr>
-    </table>
+    <v-container class="justify-center">
+        <v-row>
+            <v-col class="justify-center">
+                <h1 class="text-center">Who was the lead singer of rock band "Queen"?</h1> <!--TODO: Spotify as prop-->
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col>
+                <v-btn @click="checkAns('ansA')" height="35vh">A. Curt Cobain</v-btn>
+            </v-col>
+            <v-col>
+                <v-btn @click="checkAns('ansB')" height="35vh">B. Eric Cartman</v-btn>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col>
+                <v-btn @click="checkAns('ansC')" height="35vh">C. Freddie Mercury</v-btn>
+            </v-col>
+            <v-col>
+                <v-btn @click="checkAns('ansD')" height="35vh">D. Philip Tentacles</v-btn>
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
 
 <script>

@@ -1,9 +1,21 @@
 <template>
-    <nav>
-        <p>*nickname*</p>
-        <p>Song Guesser</p>
-        <button @click="logout">Logout</button>
-    </nav>
+    <v-app-bar density="compact">
+        <v-app-bar-title>
+            Song Guesser
+        </v-app-bar-title>
+    
+        <v-spacer></v-spacer>
+    
+        <v-btn text>Help</v-btn>    
+        <v-btn class="mr-3" text>About</v-btn>
+    
+        <v-divider inset vertical></v-divider>
+    
+        <v-btn @click="logout" class="mr-4 ml-5" color="primary" plain>
+            <v-icon left>mdi-logout-variant</v-icon>        
+            <span>Logout</span>
+        </v-btn>
+    </v-app-bar>
 </template>
 
 <script>
@@ -18,24 +30,6 @@
 </script>
 
 <style scoped>
-    button {
-        height: auto;
-        width: 10%;
-        margin: 3px 5%;
-
-        background-color: #191414;
-        border-radius: 100px;
-
-        color: white;
-        text-align: center;
-        font-size: 1.5em;
-        font-weight: bold;
-    }
-
-    button:hover {
-        background-color: #333;
-    }
-
     nav {
         width: 100%;
         

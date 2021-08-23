@@ -1,12 +1,12 @@
 <template>
-    <div class="main-container">
-      <button @click="goAuthor">
+    <v-container>
+      <v-btn @click="goAuthor" color="primary" height="80vh" width="50%">
         <h1>AUTHOR</h1>
-      </button>
-      <button @click="goPlaylist">
+      </v-btn>
+      <v-btn @click="goPlaylist" color="primary" height="80vh" width="50%">
         <h1>PLAYLIST</h1>
-      </button>
-    </div>  
+      </v-btn>
+    </v-container>  
 </template>
 
 <script>
@@ -21,17 +21,3 @@
     }
   }
 </script>
-
-<style scoped>
-
-  button {
-    height: 100%;
-    width: 50%;
-    margin-right: 1px;
-  }
-
-  div.main-container {
-    background-color: #5c7ce9;
-    flex-direction: row;
-  }
-</style>

@@ -1,8 +1,7 @@
 <template>
-    <div class="timer-bar">
-        <div class="timer-value" :style="{width: timePercentage}">
-        </div>
-    </div>
+    <v-container class="timer-bar justify-center">
+        <v-container class="timer-value" :style="{width: timePercentage}"></v-container>
+    </v-container>
 </template>
 
 <script>
@@ -10,45 +9,50 @@
         data() {
             return {
                 maxTime: 10,
-                currentTime: 10,
+                currentTime: 0,
             };
         },
+
         computed: {
             timePercentage() {
                 return this.currentTime/this.maxTime*100 + '%';
             }
         },
-        methods: {
-            countDown() {
+
+        watch: {
+            currentTime() {
                 if(this.currentTime >= 0) {
                     setTimeout(() => {
                         this.currentTime -= 1;
-                        this.countDown();
                     }, 1000)
                 }
                 else {
-                    this.currentTime = 10;
+                    this.resetTimer();
                 }
-            },
+            }
         },
+
+        methods: {
+            resetTimer() {
+                this.currentTime = 10;
+            }
+        },
+
         mounted() {
-            this.countDown();
+            this.resetTimer();
         }
     }
 </script>
 
 
 <style scoped>
-    div {
-        height: 7px;
+
+    .timer-bar {
+        padding: 0;
+        background-color: #242424;
     }
 
-    div.timer-bar {
-        background-color: grey;
-        width: 100%;
-    }
-
-    div.timer-value {
+    .timer-value {
         background-color: lightgreen;
         transition-duration: 1s;
         transition-timing-function: linear;
