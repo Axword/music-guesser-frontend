@@ -1,28 +1,49 @@
-<template> 
-    
-    <Login></Login>
-     <p>{{$store.state.name}}</p>
-
-    <!--
-      <div id="nav">
-        <router-link to="/">Home</router-link>
-        <router-link to="/main">About</router-link>
-      </div>
-      <router-view/>
-    -->
+<template>  
+  <v-app>
+    <v-main>
+        <!--------------------------------------------------------------------Uncomment to check users--
+        <ul>    
+          <li v-for="user in this.users" :key="user.id">{{ user.nick }}</li>
+        </ul>
+        -->
+        <top-nav v-if="$route.path != '/login'"></top-nav> 
+        <v-container class="justify-center">
+          <router-view></router-view>
+        </v-container>
+      </v-main>
+  </v-app>
 </template>
 
 <script>
-import Login from './views/Login.vue'
+import TopNav from './components/TopNav.vue'
 
-export default {
-  name: 'App',
+import User from './classes/user';
+import Fetcher from './classes/fetcher';
+
+export default { 
   components: {
-    Login
-  }
+    'top-nav': TopNav,
+  },
+  data() {
+    return {
+      usersDbUrl: 'https://song-guesser-caa2c-default-rtdb.europe-west1.firebasedatabase.app/users.json',
+      userFilip: new User('1', 'FlipFlop', 'filip.tomczyk00@gmail.com', 0),
+      users: []
+    };
+  },
+  methods: {
+    populateUsers() {
+      setTimeout( () => {
+        if(!Fetcher.getResponseStatus())
+          this.populateUsers();
+        else
+          this.users = Fetcher.getActiveData();
+      }, 200);
+    }
+  },
+  mounted() {
+    Fetcher.getData(this.usersDbUrl);
+    this.populateUsers();
+  },
 }
 </script>
-
-<style>
-  @import 'styles.css';
-</style>

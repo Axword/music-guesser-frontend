@@ -6,24 +6,32 @@ import GamePlaylist from "../views/GamePlaylist.vue";
 
 const routes = [
   {
-    path: "/",
-    name: "Login",
+    path: '/',
+    redirect: '/login'
+  },
+  {
+    path: '/login',
+    name: 'login',
     component: Login,
   },
   {
-    path: "/main",
-    name: "SelectMode",
+    path: '/select',
+    name: 'select',
     component: SelectMode,
   },
   {
-    path: "/author",
-    name: "GameAuthor",
+    path: '/author',
+    name: 'author',
     component: GameAuthor,
   },
   {
-    path: "/playlist",
-    name: "GamePlaylist",
+    path: '/playlist',
+    name: 'playlist',
     component: GamePlaylist,
+  },
+  {
+    path: '/:notFound(.*)',
+    redirect: '/login'
   },
 ];
 

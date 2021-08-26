@@ -1,10 +1,32 @@
 <template>
-  <div fluid class="container-main container-width_full flex_container-column">
-    <div class="container-width_half container-secondary">
-      <img id="logo_name-login_page" alt="Vue logo" src="../assets/logo-name.png">
-      <button>
-        <img id="logo_spotify-login_page" alt="Spotify Login" src="../assets/logo-spotify-name.png"/>
-      </button>
-    </div>
-  </div>
+  <v-container class="justify-center">
+    <v-card elevation="2" color="primary" outlined>
+      <v-card-title class="justify-center">
+        <v-img src="../assets/logo-name.png" size="small"></v-img>
+      </v-card-title>
+      
+      <v-card-actions class="justify-center">
+        <v-btn @click="authSpotifyUser" color="black" size="x-large" width="30%">
+          Login &nbsp;
+          <v-icon>mdi-spotify</v-icon>
+        </v-btn>
+      </v-card-actions>
+
+    </v-card>
+  </v-container>
 </template>
+
+<script>
+  export default {
+    methods: {
+      authSpotifyUser() {
+        //TODO: SPOTIFY API
+        this.$router.push('/select');
+      }
+    }
+  }
+</script>
+
+<style scoped>
+
+</style>
