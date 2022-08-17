@@ -1,13 +1,18 @@
+// Styles
 import '@mdi/font/css/materialdesignicons.css'
-import 'vuetify/lib/styles/main.sass'
+import 'vuetify/styles'
+import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
+import pl from 'vuetify/lib/locale/pl'
+
+// Vuetify
 import { createVuetify } from 'vuetify'
-import * as components from 'vuetify/lib/components'
-import * as directives from 'vuetify/lib/directives'
 
 export default createVuetify({
-  components,
-  directives,
-  theme: {
-    defaultTheme: 'dark'
-  }
+  lang: {
+    locales: { pl},
+    current: 'pl',
+  },
+icons: {
+    iconfont: 'mdi', // default - only for display purposes
+  },
 })

@@ -1,4 +1,4 @@
-# song-guesser
+# guesser-front
 
 ## Project setup
 ```

@@ -1,20 +1,14 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-
-import ChoiceTable from './components/ChoiceTable.vue'
-import ChoiceTimer from './components/ChoiceTimer.vue'
-
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
+import { loadFonts } from './plugins/webfontloader'
 
-const app = createApp(App);
+loadFonts()
 
-app.component('choice-table', ChoiceTable);
-app.component('choice-timer', ChoiceTimer);
-
-app.use(router);
-app.use(store);
-app.use(vuetify);
-
-app.mount('#app');
+createApp(App)
+  .use(router)
+  .use(store)
+  .use(vuetify)
+  .mount('#app')

@@ -1,8 +1,9 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Login from "../views/Login.vue";
+import LoginView from "../views/LoginView.vue";
 import SelectMode from "../views/SelectMode.vue";
-import GameAuthor from "../views/GameAuthor.vue";
-import GamePlaylist from "../views/GamePlaylist.vue";
+import Game from "../views/Game.vue";
+import RegisterView from "../views/RegisterView.vue";
+
 
 const routes = [
   {
@@ -12,22 +13,22 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: Login,
+    component: LoginView,
   },
   {
-    path: '/select',
-    name: 'select',
+    path: '/main-menu',
+    name: 'mainMenu',
     component: SelectMode,
   },
   {
-    path: '/author',
-    name: 'author',
-    component: GameAuthor,
+    path: '/game',
+    name: 'game',
+    component: Game,
   },
   {
-    path: '/playlist',
-    name: 'playlist',
-    component: GamePlaylist,
+    path: '/register',
+    name: 'register',
+    component: RegisterView,
   },
   {
     path: '/:notFound(.*)',
