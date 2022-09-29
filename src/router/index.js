@@ -16,7 +16,7 @@ const routes = [
     component: LoginView,
   },
   {
-    path: '/main-menu',
+    path: '/lobby',
     name: 'mainMenu',
     component: SelectMode,
   },

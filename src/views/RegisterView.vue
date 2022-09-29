@@ -75,7 +75,7 @@ export default {
       this.$router.push("/login");
     },
     createUser() {
-      this.$router.push("/main-menu");
+      this.$router.push("/lobby");
     },
   },
 };

@@ -1,10 +1,7 @@
 import { createStore } from "vuex";
-
+import snackbar from "./modules/snackbar";
 export default createStore({
-  state: {
-      name: "Hey"
-  },
-  mutations: {},
-  actions: {},
-  modules: {},
+  modules: {
+    snackbar
+  } ,
 });

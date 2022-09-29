@@ -4,7 +4,7 @@
       <v-card color="indigo-darken-2">
         <v-row justify="center">
           <v-col cols="2">
-            <h1 class="headline" dense outline>Start game</h1>
+            <h1 class="headline" outline>Start game</h1>
           </v-col>
         </v-row>
       </v-card>
@@ -113,8 +113,12 @@
   </v-container>
 </template>
 <script>
+import { mapMutations } from 'vuex';
+import SongGuesser from '../service/song-guesser';
+import State from '../service/state';
 export default {
   data: () => ({
+    room: {},
     settings: {},
     radios: "",
     value: "",
@@ -137,6 +141,13 @@ export default {
     ],
     playlists: ["80s", "90s"],
   }),
+  async created() {
+    try {
+        this.room = await SongGuesser.get(State.getRoomId());
+      } catch (err) {
+        this.showMessage({ message: 'Niepoprawny kod pokoju.', color: 'error' });
+      }
+  },
   methods: {
     back() {
       this.$router.push("/login");
@@ -144,7 +155,12 @@ export default {
     start() {
       this.$router.push("/game");
     },
-    invite() {},
+    async invite() {
+      await navigator.clipboard.writeText("localhost:8080/lobby/" + State.getRoomId());
+    },
+    ...mapMutations([
+      'showMessage'
+    ]),
   },
 };
 </script>

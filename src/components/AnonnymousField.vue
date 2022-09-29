@@ -23,7 +23,7 @@
             :disabled="!form.valid"
             class="mr-2 my-2 ml-2"
             color="white"
-            @click="createUser()"
+            @click="loginTo()"
           >
             START
           </v-btn>
@@ -33,6 +33,8 @@
   </v-container>
 </template>
 <script>
+import { mapMutations } from 'vuex';
+import Auth from '../service/auth';
 export default {
   name: "AnnonymousField",
   data() {
@@ -45,8 +47,19 @@ export default {
   },
   methods: {
     createUser() {
-      this.$router.push("/main-menu");
-    }
+      this.$router.push("/lobby");
+    },
+    async loginTo() {
+      try {
+        await Auth.login(this.user.name);
+        this.showMessage({ message: 'Zalogowano.' });
+      } catch (err) {
+        this.showMessage({ message: 'Niepoprawny login lub hasło.', color: 'error' });
+      }
+    },
+    ...mapMutations([
+      'showMessage'
+    ]),
   }
 };
 </script>

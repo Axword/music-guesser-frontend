@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     login() {
-      this.$router.push("/main-menu");
+      this.$router.push("/lobby");
     },
   },
 };
