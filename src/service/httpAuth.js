@@ -65,7 +65,7 @@ class AuthHttp extends Http {
       headers: {
         'Content-Type': 'application/json'
       },
-      baseURL: 'http://localhost:8000/',
+      baseURL: process.env.VUE_APP_API_URL,
     };
   }
 }
