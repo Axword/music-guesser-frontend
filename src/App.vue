@@ -26,7 +26,6 @@ export default {
   computed: {
     snackbar: {
       get() {
-        console.log("isSnackbarOpened");
         return this.isSnackbarOpened;
       },
       set() {

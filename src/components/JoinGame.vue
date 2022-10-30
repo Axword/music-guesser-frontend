@@ -2,7 +2,9 @@
   <v-container class="grey lighten-10">
     <v-row style="height: 50px">
       <v-col>
-        <h1 class="headline" dense outline>Wybierz nick</h1>
+        <h1 class="headline" dense outline>
+          Wybierz nick oraz podaj kod gry
+        </h1>
       </v-col>
     </v-row>
     <v-form v-model="form.valid" @submit.prevent="createUser()">
@@ -14,6 +16,11 @@
               v-model="user.name"
               required
             ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-text-field label="Kod gry" v-model="user.gameCode" required />
           </v-col>
         </v-row>
       </v-container>
@@ -51,8 +58,8 @@ export default {
     },
     async loginTo() {
       try {
-        await Auth.login(this.user.name);
-        this.showMessage({ message: "Pomyślnie stworzono pokój." });
+        await Auth.login(this.user.name, this.user.gameCode, true);
+        this.showMessage({ message: "Dołączono do gry." });
       } catch (err) {
         this.showMessage({ message: err.error, color: "error" });
       }

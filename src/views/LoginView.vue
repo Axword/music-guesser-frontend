@@ -6,18 +6,18 @@
         theme="dark"
         v-model="tabs"
       >
-        <v-tab value="annonymous"> Anonymous </v-tab>
-        <v-tab value="login"> Login </v-tab>
+        <v-tab value="createGame"> Stwórz grę </v-tab>
+        <v-tab value="joinGame"> Dołącz do gry </v-tab>
       </v-tabs>
 
       <v-card-text>
         <v-window v-model="tabs">
-          <v-window-item value="annonymous">
+          <v-window-item value="createGame">
             <AnonnymousField />
           </v-window-item>
 
-          <v-window-item value="login">
-            <LoginField />
+          <v-window-item value="joinGame">
+            <JoinGame />
           </v-window-item>
 
         </v-window>
@@ -28,9 +28,9 @@
 
 <script>
 import AnonnymousField from "@/components/AnonnymousField.vue";
-import LoginField from "@/components/LoginField.vue";
+import JoinGame from "@/components/JoinGame.vue";
 export default {
-  components: { AnonnymousField, LoginField },
+  components: { AnonnymousField, JoinGame },
   data() {
     return {
       tabs: null,
