@@ -17,7 +17,7 @@ class Http {
       headers: {
         'Content-Type': 'application/json'
       },
-      baseURL: process.env.VUE_APP_BASEURL,
+      baseURL: process.env.VUE_APP_API_URL,
     };
   }
 }
