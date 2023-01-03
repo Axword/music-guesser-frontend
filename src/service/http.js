@@ -17,7 +17,7 @@ class Http {
       headers: {
         'Content-Type': 'application/json'
       },
-      baseURL: process.env.VUE_APP_API_URL,
+      baseURL: 'http://localhost:8000/',
     };
   }
 }

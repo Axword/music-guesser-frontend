@@ -46,20 +46,23 @@ const actions = {
       commit("setSongGuesser", await SongGuesser.startNewRound(params));
       return true
     } catch(error) {
-      commit("showMessage", {
-        message: error.error,
-        color: "error",
-      });
+      return false
     }
   },
   async checkAnswer({ commit }, params) {
     try {
       const data = await SongGuesser.checkAnswer(params)
-      console.log(data)
+      if (!data.answer) {
+        commit("showMessage", {
+          message: "Czas minął",
+          color: "yellow",
+        });
+        return false
+      }
       if (data.is_won)
         commit("showMessage", {message: "Dobra odpowiedź!", color: "success"});
       else
-        commit("showMessage", {message: "Zła odpowiedź!", color: "yellow"});
+        commit("showMessage", {message: "Zła odpowiedź!", color: "red"});
     } catch(error) {
       commit("showMessage", {
         message: error.error,

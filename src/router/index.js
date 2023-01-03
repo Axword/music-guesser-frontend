@@ -3,12 +3,18 @@ import LoginView from "../views/LoginView.vue";
 import SelectMode from "../views/SelectMode.vue";
 import Game from "../views/Game.vue";
 import RegisterView from "../views/RegisterView.vue";
+import EndGameScreen from '../views/EndGameScreen.vue'
 
 
 const routes = [
   {
     path: '/',
     redirect: '/login'
+  },
+  {
+    path: '/end',
+    name: 'end',
+    component: EndGameScreen,
   },
   {
     path: '/login',

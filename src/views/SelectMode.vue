@@ -32,11 +32,11 @@
           tile
         >
           <v-col>
-            <!-- <v-row> -->
-            <!-- <v-col cols="4" sm="4" md="4">
+            <v-row>
+            <v-col cols="4" sm="4" md="4">
                 <v-radio-group v-model="radios">
                   <template v-slot:label>
-                    <strong>Select playlist info</strong>
+                    <strong>Wybierz serwis</strong>
                   </template>
                   <v-radio value="spotify">
                     <template v-slot:label>
@@ -48,17 +48,27 @@
                       <strong>Soundcloud</strong>
                     </template>
                   </v-radio>
+                  <v-radio value="youtube">
+                    <template v-slot:label>
+                      <strong>Youtube</strong>
+                    </template>
+                  </v-radio>
                 </v-radio-group>
-              </v-col> -->
-            <!-- <v-col
+              </v-col>
+            <v-col
                 v-if="radios == 'spotify'"
-                cols="4"
-                sm="4"
-                md="4"
-                class="m-10"
+                cols="6"
+                sm="6"
+                md="6"
+                class="m-10 mt-10"
               >
-              </v-col> -->
-            <!-- </v-row> -->
+              <v-select
+                  label="Wybierz playliste z twojego konta"
+                  v-model="songGuesser.playlist_url"
+                  :items="playlists"
+                ></v-select>
+              </v-col>
+            </v-row>
             <v-row>
               <v-col cols="12" sm="12" md="12">
                 <v-text-field
@@ -74,6 +84,13 @@
                   label="Liczba rund"
                   v-model="songGuesser.number_of_rounds"
                   :items="rounds"
+                ></v-select>
+              </v-col>
+              <v-col cols="6" sm="6" md="6">
+                <v-select
+                  label="Czas na odpowiedź"
+                  v-model="songGuesser.time"
+                  :items="time"
                 ></v-select>
               </v-col>
             </v-row>
@@ -105,7 +122,9 @@ export default {
     radios: "",
     value: "",
     selectedItem: 1,
+    time: ['5', '10', '20', '30'],
     rounds: ["3", "5", "10", "20"],
+    playlists: ['Lata 80', 'Lata 90', 'Lato 2023']
   }),
   async created() {
     await this.fetchSongGuesser("?code=" + State.getRoomId());
