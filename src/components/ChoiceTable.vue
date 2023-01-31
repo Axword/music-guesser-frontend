@@ -14,9 +14,6 @@
         </v-container>
       </v-col>
     </v-row>
-    <div class="overlay"> <p clas="countdown" :class="{ animate: animate}">{{ countDown }}</p>
-
-    </div>
     <v-row>
       <v-col>
         <v-btn
@@ -203,10 +200,10 @@ td {
   font-size: 48px;
   color: black
 }
-.animate {
+/* .animate {
   animation: countdown 1s linear;
-}
-@keyframes countdown {
+} */
+/* @keyframes countdown {
   0% {
     opacity: 1;
     font-size: 50px;
@@ -215,5 +212,5 @@ td {
     opacity: 0;
     font-size: 100px;
   }
-}
+} */
 </style>

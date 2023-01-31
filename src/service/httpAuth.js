@@ -1,5 +1,3 @@
-
-
 import Http from './http';
 import store from '@/store';
 
@@ -19,15 +17,15 @@ class AuthHttp extends Http {
       let delimiter = opts.delimiter || '.';
 
       function step(object, prev) {
-        Object.keys(object).forEach(function(key) {
+        Object.keys(object).forEach(function (key) {
           let value = object[key];
           let isArray = Array.isArray(value);
           let type = Object.prototype.toString.call(value);
           let isObject = type === '[object Object]';
 
-          let newKey = prev
-            ? prev + delimiter + key
-            : key;
+          let newKey = prev ?
+            prev + delimiter + key :
+            key;
 
           if (!isArray && isObject && Object.keys(value).length) {
             return step(value, newKey);
@@ -43,7 +41,7 @@ class AuthHttp extends Http {
 
       step(target);
     }
-    if (!(error.response === 'undefinied' && error.response.data ==='undefinied')) {
+    if (!(error.response === 'undefinied' && error.response.data === 'undefinied')) {
       if (error.response.status === 400 || error.response.status === 404 || error.response.status === 403) {
         flatten(error.response.data);
       } else if (error.response.status === 401) {
@@ -55,7 +53,10 @@ class AuthHttp extends Http {
       msg.push('Wystąpił nieoczekiwany błąd.');
     }
 
-    store.commit('showMessage', { message: msg.join('\n'), color: 'error' });
+    store.commit('showMessage', {
+      message: msg.join('\n'),
+      color: 'error'
+    });
 
     throw error;
   }
