@@ -20,7 +20,7 @@
       <v-row>
         <v-col cols="12">
           <v-btn
-            :disabled="!form.valid"
+            :disabled="!user.name"
             class="mr-2 my-2 ml-2"
             color="white"
             @click="loginTo()"
@@ -34,13 +34,12 @@
 </template>
 <script>
 import { mapMutations } from "vuex";
-import Auth from "../service/auth";
 export default {
-  name: "AnnonymousField",
+  name: "CreateGame",
   data() {
     return {
       form: {
-        valid: true,
+        valid: false,
       },
       user: {},
     };
@@ -51,10 +50,10 @@ export default {
     },
     async loginTo() {
       try {
-        await Auth.login(this.user.name);
+        await this.$store.dispatch('joinOrCreateRoom', { name: this.user.name });
         this.showMessage({ message: "Pomyślnie stworzono pokój." });
       } catch (err) {
-        this.showMessage({ message: err.error, color: "error" });
+        this.showMessage({ message: err, color: "error" });
       }
     },
     ...mapMutations(["showMessage"]),

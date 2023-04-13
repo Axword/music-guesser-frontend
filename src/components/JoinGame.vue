@@ -41,9 +41,8 @@
 </template>
 <script>
 import { mapMutations } from "vuex";
-import Auth from "../service/auth";
 export default {
-  name: "AnnonymousField",
+  name: "JoinGame",
   data() {
     return {
       form: {
@@ -58,10 +57,10 @@ export default {
     },
     async loginTo() {
       try {
-        await Auth.login(this.user.name, this.user.gameCode, true);
+        await this.$store.dispatch('joinOrCreateRoom', { name: this.user.name, gameCode: this.user.gameCode });
         this.showMessage({ message: "Dołączono do gry." });
       } catch (err) {
-        this.showMessage({ message: err.error, color: "error" });
+        this.showMessage({ message: err, color: "error" });
       }
     },
     ...mapMutations(["showMessage"]),
