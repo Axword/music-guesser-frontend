@@ -1,24 +1,41 @@
+/* eslint-disable */
 import SongGuesser from '../../service/song-guesser';
 
 const state = {
   songGuesser: {},
-  game: {}
+  game: {},
+  socket: null
 };
 
 const getters = {
+  setSocket(state, socket) {
+    state.socket = socket;
+  },
   getSongGuesser(state) {
     return state.songGuessers;
   },
 };
-
 const mutations = {
   setSongGuesser(state, payload) {
     state.songGuesser = {...state.songGuesser, ...payload};
   },
-
 };
 
 const actions = {
+    initWebSocket({ commit, dispatch }, { url, roomCode }) {
+      const socket = new WebSocketConnection();
+      socket.connect(url);
+  
+      socket.onMessage((data) => {
+        // Handle the received data here
+        console.log("Received data:", data);
+        // You can dispatch other actions depending on the received data
+        // For example: dispatch("updateGameState", data);
+      });
+  
+      commit("setSocket", socket);
+    },
+  
   async fetchSongGuesser({ commit }, params) {
     try {
       commit("setSongGuesser", await SongGuesser.get(params));
@@ -29,48 +46,59 @@ const actions = {
       });
     }
   },
-  async startGame({ commit }, params) {
-    try {
-      commit("setSongGuesser", await SongGuesser.startGame(params));
-      return true
-    } catch(error) {
-      commit("showMessage", {
-        message: error.error,
-        color: "error",
-      });
-      return false
-    }
-  },
-  async startNewRound({ commit }, params) {
-    try {
-      commit("setSongGuesser", await SongGuesser.startNewRound(params));
-      return true
-    } catch(error) {
-      return false
-    }
-  },
-  async checkAnswer({ commit }, params) {
-    try {
-      const data = await SongGuesser.checkAnswer(params)
-      if (!data.answer) {
-        commit("showMessage", {
-          message: "Czas minął",
-          color: "yellow",
-        });
-        return false
+  async joinOrCreateRoom({ commit }, payload) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const gameCode = payload.gameCode ? payload.gameCode + '/' : '';
+        console.log(gameCode)
+        const socket = new WebSocket(`ws://localhost:8000/ws/room/${gameCode}`);
+  
+        socket.onopen = () => {
+          socket.send(JSON.stringify({
+            action: 'join_or_create',
+            data: { name: payload.name }
+          }));
+        };
+  
+        socket.onmessage = (event) => {
+          const data = JSON.parse(event.data);
+          if (data.success) {
+            // Store the socket instance somewhere in the state or in a Vue instance
+            resolve();
+          } else {
+            reject(data.error);
+          }
+        };
+      } catch (error) {
+        reject(error);
       }
-      if (data.is_won)
-        commit("showMessage", {message: "Dobra odpowiedź!", color: "success"});
-      else
-        commit("showMessage", {message: "Zła odpowiedź!", color: "red"});
-    } catch(error) {
-      commit("showMessage", {
-        message: error.error,
-        color: "error",
-      });
-      return false
+    });
+  },
+
+  async startGame({ commit, state }, params) {
+    // ...
+    if (state.socket) {
+      // You can send a message to the WebSocket server after starting the game
+      state.socket.sendMessage({ type: "start_game", params });
     }
-  }
+    // ...
+  },
+  async startNewRound({ commit, state }, params) {
+    // ...
+    if (state.socket) {
+      // You can send a message to the WebSocket server to start a new round
+      state.socket.sendMessage({ type: "start_round", params });
+    }
+    // ...
+  },
+  async checkAnswer({ commit, state }, params) {
+    // ...
+    if (state.socket) {
+      // You can send a message to the WebSocket server to check the answer
+      state.socket.sendMessage({ type: "check_answer", params });
+    }
+    // ...
+  },
 };
 
 export default {

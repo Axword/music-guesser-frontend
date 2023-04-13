@@ -13,7 +13,7 @@
       <v-card-text>
         <v-window v-model="tabs">
           <v-window-item value="createGame">
-            <AnonnymousField />
+            <CreateGame />
           </v-window-item>
 
           <v-window-item value="joinGame">
@@ -27,10 +27,10 @@
 </template>
 
 <script>
-import AnonnymousField from "@/components/AnonnymousField.vue";
+import CreateGame from "@/components/CreateGame.vue";
 import JoinGame from "@/components/JoinGame.vue";
 export default {
-  components: { AnonnymousField, JoinGame },
+  components: { CreateGame, JoinGame },
   data() {
     return {
       tabs: null,
